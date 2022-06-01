@@ -7,7 +7,7 @@ import Start from './pages/start';
 import Menu from './pages/menu';
 import Services from './pages/services';
 import Auth from './pages/auth';
-import Cart from './pages/cart';
+import Orders from './pages/orders';
 import NotFound from './pages/notFound';
 import AuthRoute from './components/authRoute';
 function App() {
@@ -19,15 +19,12 @@ function App() {
         <Header />
         <Routes>
           <Route path='/login' element={<AuthRoute component={Auth} />}></Route>
-          <Route path='/' element={<PrivateRoute component={Start} />}></Route>
+          <Route path='/' element={<PrivateRoute component={Orders} />}></Route>
           <Route
             path='/menu'
             element={<PrivateRoute component={Menu} />}
           ></Route>
-          <Route
-            path='/cart'
-            element={<PrivateRoute component={Cart} />}
-          ></Route>
+
           <Route
             path='/services'
             element={<PrivateRoute component={Services} />}

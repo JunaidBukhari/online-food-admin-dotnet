@@ -1,9 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCart } from '../redux-toolkit/dataSlice';
-const Cart = () => {
+const Orders = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.data.cart);
+  console.log(cart);
   const increment = (d) => {
     let newCart = [...cart];
     let obj = newCart.filter((c) => c.id === d.id)?.[0];
@@ -28,51 +29,60 @@ const Cart = () => {
     }
   };
   const handleDelete = (d) => {
-    let newCart = [...cart];
-    let obj = newCart.filter((c) => c.id === d.id)?.[0];
-    let index = newCart.indexOf(obj);
-    newCart.splice(index, 1);
-    dispatch(addToCart(newCart));
+    if (window.confirm('Are You Sure you want to Delete !')) {
+      let newCart = [...cart];
+      let obj = newCart.filter((c) => c.id === d.id)?.[0];
+      let index = newCart.indexOf(obj);
+      newCart.splice(index, 1);
+      dispatch(addToCart(newCart));
+    }
   };
   return (
     <div className='container'>
       <div className='mt-5'>
         <table className='table bg-light'>
           <thead style={{ color: 'white', backgroundColor: '#343A40' }}>
-            <tr>
+            <tr style={{ whiteSpace: 'nowrap' }}>
+              <td>Order ID</td>
               <td>Name</td>
               <td>Amount</td>
               <td>Price</td>
+              <td>Name of Customer</td>
+              <td>Address</td>
+              <td>Contact Number</td>
               <td>Action</td>
             </tr>
           </thead>
           <tbody>
             {cart.map((c) => (
-              <tr className=''>
+              <tr style={{ whiteSpace: 'nowrap' }}>
+                <td>{c.id}</td>
                 <td>{c.title}</td>
                 <td>
-                  <span
-                    onClick={() => increment(c)}
-                    className='btn btn-sm btn-success mr-2 pb-1 pt-1'
-                  >
-                    +
+                  <span className='ml-3' style={{ color: 'green' }}>
+                    {c.item}
                   </span>
-
-                  <span
-                    onClick={() => decrement(c)}
-                    className='btn btn-sm btn-danger pb-1 pt-1'
-                  >
-                    -
-                  </span>
-                  <span className='badge badge-info ml-3'>{c.item}</span>
                 </td>
 
                 <td>Rs {c.item * c.price}</td>
+                <td>Junaid</td>
+                <td>House # 120, Southern District Bahria Orchard Lahore</td>
+                <td>+923014254498</td>
                 <td>
                   <i
                     onClick={() => handleDelete(c)}
                     className='fa fa-trash'
                     style={{ color: 'red', cursor: 'pointer' }}
+                  ></i>
+                  <i
+                    onClick={() => {}}
+                    className='fa fa-pen ml-4'
+                    style={{ color: 'blue', cursor: 'pointer' }}
+                  ></i>
+                  <i
+                    onClick={() => {}}
+                    className='fa fa-check ml-4'
+                    style={{ color: 'green', cursor: 'pointer' }}
                   ></i>
                 </td>
               </tr>
@@ -80,11 +90,11 @@ const Cart = () => {
           </tbody>
         </table>
       </div>
-      <button disabled={!cart.length} className='btn btn-success mt-3'>
-        {cart.length ? 'CONFIRM ORDER' : 'Add something to cart'}
-      </button>
+      {/* <button disabled={!cart.length} className='btn btn-success mt-3'>
+        {cart.length ? 'APPROVE ORDER' : 'NO ORDERS YET'}
+      </button> */}
     </div>
   );
 };
 
-export default Cart;
+export default Orders;

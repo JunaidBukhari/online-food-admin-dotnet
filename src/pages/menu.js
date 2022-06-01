@@ -31,24 +31,11 @@ const Menu = () => {
         className='row d-flex justify-content-center'
       >
         {data?.map((d) => (
-          <div
-            style={{
-              maxWidth: '350px',
-              minWidth: '350px',
-            }}
-            key={d.id}
-            className='col col-lg-6 col-xl-4 col-md-12 mt-4'
-          >
-            <img
-              className='card-img-top'
-              height={230}
-              src={d.image}
-              alt='Card image cap'
-            />
+          <div key={d.id} className='col-12 mt-4'>
             <div
               style={{
-                maxHeight: '120px',
-                minHeight: '120px',
+                maxHeight: '80px',
+                minHeight: '80px',
                 backgroundColor: 'white',
               }}
               className='card-body'
@@ -57,15 +44,27 @@ const Menu = () => {
                 className='d-flex'
                 style={{ justifyContent: 'space-between' }}
               >
-                <h5 className='text-dark'>{d.title}</h5>
-                <h5 style={{ color: 'green' }}>Rs.{d.price}</h5>
+                <h5 className='col-4 text-dark'>{d.title}</h5>
+                <img
+                  style={{
+                    cursor: 'pointer',
+                    objectFit: 'cover',
+                  }}
+                  height={40}
+                  width={40}
+                  src={d.image}
+                  alt='Card image cap col-1'
+                />
+                <h5 className='col-2' style={{ color: 'green' }}>
+                  Rs.{d.price}
+                </h5>
                 <div>
                   <p className='u-numberrowwwww'>{d.comment}</p>
-                  <hr className='solid' />
+                  {/* <hr className='solid' /> */}
                 </div>
               </span>
               <span
-                style={{ position: 'absolute', bottom: '10px', left: '25px' }}
+                style={{ position: 'absolute', bottom: '10px', left: '40px' }}
               >
                 {<RatingStars rating={3.5} />}
               </span>
