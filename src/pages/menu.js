@@ -50,30 +50,36 @@ const Menu = () => {
                     cursor: 'pointer',
                     objectFit: 'cover',
                   }}
-                  height={40}
-                  width={40}
+                  height={50}
+                  width={50}
                   src={d.image}
                   alt='Card image cap col-1'
                 />
-                <h5 className='col-2' style={{ color: 'green' }}>
+                <h5 className='col-2 mt-2' style={{ color: 'green' }}>
                   Rs.{d.price}
                 </h5>
                 <div>
                   <p className='u-numberrowwwww'>{d.comment}</p>
-                  {/* <hr className='solid' /> */}
                 </div>
               </span>
               <span
                 style={{ position: 'absolute', bottom: '10px', left: '40px' }}
               >
-                {<RatingStars rating={3.5} />}
+                {<RatingStars rating={4.5} />}
               </span>
               <button
-                style={{ position: 'absolute', bottom: '10px', right: '25px' }}
+                style={{ position: 'absolute', bottom: '20px', right: '45px' }}
                 className='btn btn-success'
                 onClick={() => additemtoCart(d)}
               >
-                <i className='fa-solid fa-cart-plus'></i>
+                <i className='fa-solid fa-pen'></i>
+              </button>
+              <button
+                style={{ position: 'absolute', bottom: '20px', right: '95px' }}
+                className='btn btn-danger'
+                onClick={() => additemtoCart(d)}
+              >
+                <i className='fa-solid fa-trash'></i>
               </button>
             </div>
           </div>
