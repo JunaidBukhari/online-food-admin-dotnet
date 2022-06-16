@@ -54,6 +54,9 @@ export const dataSlice = createSlice({
     addToCart: (state, action) => {
       state.cart = action.payload;
     },
+    setMenu: (state, action) => {
+      state.menu = action.payload;
+    },
   },
 });
 
