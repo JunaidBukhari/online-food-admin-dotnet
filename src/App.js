@@ -12,24 +12,24 @@ import NotFound from './pages/notFound';
 import AuthRoute from './components/authRoute';
 function App() {
   return (
-    <div className='App'>
-      <Toaster position='bottom-center' reverseOrder={false} />
+    <div className="App">
+      <Toaster position="bottom-center" reverseOrder={false} />
 
       <Router>
         <Header />
         <Routes>
-          <Route path='/login' element={<AuthRoute component={Auth} />}></Route>
-          <Route path='/' element={<PrivateRoute component={Orders} />}></Route>
+          <Route path="/login" element={<AuthRoute component={Auth} />}></Route>
+          <Route path="/" element={<PrivateRoute component={Orders} />}></Route>
           <Route
-            path='/menu'
+            path="/menu"
             element={<PrivateRoute component={Menu} />}
           ></Route>
 
           <Route
-            path='/services'
+            path="/services"
             element={<PrivateRoute component={Services} />}
           ></Route>
-          <Route path='/*' element={<NotFound />}></Route>
+          <Route path="/*" element={<NotFound />}></Route>
         </Routes>
         <Footer />
       </Router>

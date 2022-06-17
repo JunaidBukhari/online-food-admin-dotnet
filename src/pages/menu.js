@@ -8,11 +8,11 @@ import { getMenu } from '../redux-toolkit/actions';
 const Menu = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.data.menu);
-
+  console.log(data);
   const cart = useSelector((state) => state.data.cart);
   useEffect(() => {
     dispatch(getMenu());
-  }, [data]);
+  }, []);
   const additemtoCart = (d) => {
     if (cart.filter((c) => c.id === d.id).length) {
       let newCart = [...cart];
@@ -57,7 +57,7 @@ const Menu = () => {
                 className="d-flex"
                 style={{ justifyContent: 'space-between' }}
               >
-                <h5 className="col-4 text-dark">{d.title}</h5>
+                <h5 className="col-4 text-dark">{d.name}</h5>
                 <img
                   style={{
                     cursor: 'pointer',
@@ -66,7 +66,7 @@ const Menu = () => {
                   height={50}
                   width={50}
                   src={d.image}
-                  alt="Card image cap col-1"
+                  alt=""
                 />
                 <h5 className="col-2 mt-2" style={{ color: 'green' }}>
                   Rs.{d.price}

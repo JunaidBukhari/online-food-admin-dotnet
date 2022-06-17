@@ -6,17 +6,17 @@ import { isEmptyObj } from '../utils/emptyObj';
 const AddEditFoodModal = (props) => {
   const { obj, setObj, setShow, show } = props;
   const [newObj, setNewObj] = useState({
-    Name: '',
-    Image: '',
-    Price: '',
-    Available: false,
+    name: '',
+    image: '',
+    price: '',
+    available: false,
   });
   useEffect(() => {
     let newobj = {
-      Name: obj.Name,
-      Image: obj.Image,
-      Price: obj.Price,
-      Available: obj.Available,
+      name: obj.name,
+      image: obj.image,
+      price: obj.price,
+      available: obj.available,
     };
     setNewObj(newobj);
   }, [props.obj]);
@@ -38,7 +38,7 @@ const AddEditFoodModal = (props) => {
                       name="name"
                       placeholder="Name"
                       required
-                      value={newObj.Name}
+                      value={newObj.name}
                     />
                   </div>
 
@@ -49,17 +49,17 @@ const AddEditFoodModal = (props) => {
                       name="price"
                       placeholder="Price"
                       required
-                      value={newObj.Price}
+                      value={newObj.price}
                     />
                   </div>
                   <div class="col-md-12 mt-3">
                     <span className="pr-4">Availability</span>
                     <label class="switch">
-                      <input type="checkbox" />
+                      <input checked={newObj.available} type="checkbox" />
                       <span class="slider round"></span>
                     </label>
                   </div>
-                  <ImageUpload image={newObj.Image} />
+                  <ImageUpload image={newObj.image} />
 
                   <button
                     id="submit"
