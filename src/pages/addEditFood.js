@@ -6,6 +6,7 @@ import { isEmptyObj } from '../utils/emptyObj';
 const AddEditFoodModal = (props) => {
   const { obj, setObj, setShow, show } = props;
   const [newObj, setNewObj] = useState({
+    id: 0,
     name: '',
     image: '',
     price: '',
@@ -13,6 +14,7 @@ const AddEditFoodModal = (props) => {
   });
   useEffect(() => {
     let newobj = {
+      id: obj.id ?? 0,
       name: obj.name,
       image: obj.image,
       price: obj.price,
@@ -20,6 +22,15 @@ const AddEditFoodModal = (props) => {
     };
     setNewObj(newobj);
   }, [props.obj]);
+
+  const onChange = (e) => {
+    setNewObj({ ...newObj, [e.target.name]: e.target.value });
+  };
+  const [image, setImage] = useState('');
+  const submit = (e) => {
+    e.preventDefault();
+    console.log(newObj);
+  };
   return (
     <Modal show={show}>
       <div class="form-body container p-5">
@@ -30,7 +41,7 @@ const AddEditFoodModal = (props) => {
                 <h3 className="ml-3 mb-4">
                   {!isEmptyObj(obj) ? 'Update Food' : 'Add Food'}
                 </h3>
-                <form class="requires-validation" novalidate>
+                <form onSubmit={submit} class="requires-validation" novalidate>
                   <div class="col-md-12">
                     <input
                       class="form-control"
@@ -39,6 +50,7 @@ const AddEditFoodModal = (props) => {
                       placeholder="Name"
                       required
                       value={newObj.name}
+                      onChange={onChange}
                     />
                   </div>
 
@@ -50,16 +62,23 @@ const AddEditFoodModal = (props) => {
                       placeholder="Price"
                       required
                       value={newObj.price}
+                      onChange={onChange}
                     />
                   </div>
                   <div class="col-md-12 mt-3">
                     <span className="pr-4">Availability</span>
                     <label class="switch">
-                      <input checked={newObj.available} type="checkbox" />
+                      <input
+                        checked={newObj.available}
+                        onChange={(e) => {
+                          setNewObj({ ...newObj, available: e.target.checked });
+                        }}
+                        type="checkbox"
+                      />
                       <span class="slider round"></span>
                     </label>
                   </div>
-                  <ImageUpload image={newObj.image} />
+                  <ImageUpload setImage={setImage} image={newObj.image} />
 
                   <button
                     id="submit"

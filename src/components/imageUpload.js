@@ -4,6 +4,7 @@ const ImageUpload = (props) => {
   const [image, setImage] = useState(props.image ?? '');
   const onImageChange = (event) => {
     const reader = new FileReader();
+    props.setImage(event.target.files[0]);
     reader.readAsDataURL(event.target.files[0]);
     reader.onloadend = () => {
       const base64data = reader.result;
@@ -26,6 +27,7 @@ const ImageUpload = (props) => {
                   e.preventDefault();
                   upload.current.value = '';
                   setImage('');
+                  props.setImage('');
                 }}
               >
                 Delete

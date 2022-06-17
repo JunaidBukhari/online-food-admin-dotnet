@@ -8,7 +8,6 @@ import { getMenu } from '../redux-toolkit/actions';
 const Menu = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.data.menu);
-  console.log(data);
   const cart = useSelector((state) => state.data.cart);
   useEffect(() => {
     dispatch(getMenu());
@@ -78,7 +77,7 @@ const Menu = () => {
               <span
                 style={{ position: 'absolute', bottom: '10px', left: '40px' }}
               >
-                {<RatingStars rating={4.5} />}
+                {<RatingStars rating={d.rating} />}
               </span>
               <button
                 style={{ position: 'absolute', bottom: '20px', right: '45px' }}
