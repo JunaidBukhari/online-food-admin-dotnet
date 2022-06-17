@@ -18,8 +18,8 @@ const AddEditFoodModal = (props) => {
       Price: obj.Price,
       Available: obj.Available,
     };
-    setObj(newobj);
-  }, [obj]);
+    setNewObj(newobj);
+  }, [props.obj]);
   return (
     <Modal show={show}>
       <div class="form-body container p-5">

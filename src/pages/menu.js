@@ -1,14 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import AddEditFoodModal from './addEditFood';
 import { useSelector, useDispatch } from 'react-redux';
 import RatingStars from '../components/ratings';
 import { addToCart } from '../redux-toolkit/dataSlice';
+import { getMenu } from '../redux-toolkit/actions';
 const Menu = () => {
+  const dispatch = useDispatch();
   const data = useSelector((state) => state.data.menu);
 
   const cart = useSelector((state) => state.data.cart);
-  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getMenu());
+  }, [data]);
   const additemtoCart = (d) => {
     if (cart.filter((c) => c.id === d.id).length) {
       let newCart = [...cart];
