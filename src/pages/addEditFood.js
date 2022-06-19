@@ -2,8 +2,10 @@ import { Modal } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 import ImageUpload from '../components/imageUpload';
 import { isEmptyObj } from '../utils/emptyObj';
-
+import { AddandUpdate, AddandUpdateWithImage } from './../redux-toolkit/actions';
+import { useDispatch } from 'react-redux';
 const AddEditFoodModal = (props) => {
+ const dispatch=useDispatch();
   const { obj, setObj, setShow, show } = props;
   const [newObj, setNewObj] = useState({
     id: 0,
@@ -26,10 +28,14 @@ const AddEditFoodModal = (props) => {
   const onChange = (e) => {
     setNewObj({ ...newObj, [e.target.name]: e.target.value });
   };
-  const [image, setImage] = useState('');
+const [image,setImage]=useState('')
   const submit = (e) => {
     e.preventDefault();
-    console.log(newObj);
+    if(image){
+     dispatch(AddandUpdateWithImage(newObj,image,setShow))
+    }
+else{dispatch(AddandUpdate(newObj, setShow))}
+
   };
   return (
     <Modal show={show}>
@@ -78,7 +84,7 @@ const AddEditFoodModal = (props) => {
                       <span class="slider round"></span>
                     </label>
                   </div>
-                  <ImageUpload setImage={setImage} image={newObj.image} />
+                  <ImageUpload setNewObj={setNewObj} newObj={newObj} image={image} setImage={setImage} />
 
                   <button
                     id="submit"

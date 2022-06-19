@@ -1,0 +1,1 @@
+export const serverUrl="https://localhost:7032/api/Food"
