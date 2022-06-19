@@ -23,6 +23,7 @@ const AddEditFoodModal = (props) => {
       available: obj.available,
     };
     setNewObj(newobj);
+    setImage("")
   }, [props.obj]);
 
   const onChange = (e) => {
@@ -34,7 +35,12 @@ const [image,setImage]=useState('')
     if(image){
      dispatch(AddandUpdateWithImage(newObj,image,setShow))
     }
-else{dispatch(AddandUpdate(newObj, setShow))}
+else{
+  
+  
+  dispatch(AddandUpdate(newObj, setShow))
+
+}
 
   };
   return (
