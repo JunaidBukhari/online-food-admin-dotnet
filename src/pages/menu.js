@@ -100,7 +100,7 @@ const Menu = () => {
           </div>
         ))}
         <button
-          onClick={() => setShow(true)}
+          onClick={() => {setObj({});setShow(true)}}
           className="btn btn-success mt-5"
           style={{ width: '150px' }}
         >
