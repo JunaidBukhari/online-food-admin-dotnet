@@ -1,22 +1,22 @@
-import axios from "axios";
-import { setMenu } from "./dataSlice";
-import { serverUrl } from "./../constants/serverRoutes";
-import { uploadImagetoCloudinary } from "./../utils/imageUpload";
-import { toast } from "react-hot-toast";
+import axios from 'axios';
+import { setMenu, setUsers } from './dataSlice';
+import { serverRoutes } from './../constants/serverRoutes';
+import { uploadImagetoCloudinary } from './../utils/imageUpload';
+import { toast } from 'react-hot-toast';
 export const getMenu = () => (dispatch) => {
-  axios.get(serverUrl).then((res) => dispatch(setMenu(res.data)));
+  axios.get(serverRoutes.GET_MENU).then((res) => dispatch(setMenu(res.data)));
 };
 
 export const AddandUpdate = (body, setShow) => (dispatch) => {
   axios
-    .post(serverUrl, body)
+    .post(serverRoutes.GET_MENU, body)
     .then((res) => {
       setShow(false);
       dispatch(getMenu());
-      toast.success("Success");
+      toast.success('Success');
     })
     .catch((err) => {
-      toast.error("Error while saving");
+      toast.error('Error while saving');
     });
 };
 
@@ -28,8 +28,12 @@ export const AddandUpdateWithImage = (body, image, setShow) => (dispatch) => {
 };
 
 export const DeleteFood = (id) => (dispatch) => {
-  axios.delete(`${serverUrl}/${id}`).then((res) => {
+  axios.delete(`${serverRoutes.GET_MENU}/${id}`).then((res) => {
     dispatch(getMenu());
-    toast.success("deleted successfully");
+    toast.success('deleted successfully');
   });
+};
+
+export const getUsers = () => (dispatch) => {
+  axios.get(serverRoutes.GET_USERS).then((res) => dispatch(setUsers(res.data)));
 };

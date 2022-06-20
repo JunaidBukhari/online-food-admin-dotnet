@@ -3,13 +3,12 @@ import { Toaster } from 'react-hot-toast';
 import PrivateRoute from './components/privateRoute';
 import Footer from './HOC/footer';
 import Header from './HOC/header';
-import Start from './pages/start';
 import Menu from './pages/menu';
-import Services from './pages/services';
 import Auth from './pages/auth';
 import Orders from './pages/orders';
 import NotFound from './pages/notFound';
 import AuthRoute from './components/authRoute';
+import Users from './pages/users';
 function App() {
   return (
     <div className="App">
@@ -26,8 +25,8 @@ function App() {
           ></Route>
 
           <Route
-            path="/services"
-            element={<PrivateRoute component={Services} />}
+            path="/users"
+            element={<PrivateRoute component={Users} />}
           ></Route>
           <Route path="/*" element={<NotFound />}></Route>
         </Routes>

@@ -13,60 +13,60 @@ const Header = () => {
     navigate('/login');
   };
   return (
-    <div id='home' className='navbar navbar-expand-lg navbar-light bg-light'>
-      <div className='container-fluid'>
-        <Link to='/' className='navbar-brand'>
+    <div id="home" className="navbar navbar-expand-lg navbar-light bg-light">
+      <div className="container-fluid">
+        <Link to="/" className="navbar-brand">
           MY ONLINE FOOD
         </Link>
         <button
-          className='navbar-toggler'
-          type='button'
-          data-bs-toggle='collapse'
-          data-bs-target='#navbarSupportedContent'
-          aria-controls='navbarSupportedContent'
-          aria-expanded='false'
-          aria-label='Toggle navigation'
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
-          <span className='navbar-toggler-icon'></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
-        <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-          <ul className='navbar-nav me-auto mb-2 mb-lg-0'>
-            <li className='nav-item'>
-              <Link to='/services' className='navbar-brand active'>
-                Services
+        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+            <li className="nav-item">
+              <Link to="/users" className="navbar-brand active">
+                Users
               </Link>
             </li>
 
-            <li className='nav-item'>
-              <Link to='/menu' className='navbar-brand active'>
+            <li className="nav-item">
+              <Link to="/menu" className="navbar-brand active">
                 Menu
               </Link>
             </li>
 
-            <li className='nav-item'>
-              <Link to='/' className=' btn btn-danger '>
+            <li className="nav-item">
+              <Link to="/" className=" btn btn-danger ">
                 ORDERS
               </Link>
             </li>
           </ul>
 
           {localStorage.getItem('isAuthenticated') && (
-            <button onClick={logout} className='btn btn-warning mr-5'>
+            <button onClick={logout} className="btn btn-warning mr-5">
               Logout
             </button>
           )}
 
           <Link
-            to='/contact'
-            href='http://localhost/project/addorder.php'
-            className='pr-0'
+            to="/contact"
+            href="http://localhost/project/addorder.php"
+            className="pr-0"
           >
             <i
-              class='fa-solid fa-message text-dark'
+              class="fa-solid fa-message text-dark"
               style={{ fontSize: '24px' }}
             ></i>
           </Link>
-          <span className='pl-1 mr-4 badge badge-danger'>{itemsInCart}</span>
+          <span className="pl-1 mr-4 badge badge-danger">{itemsInCart}</span>
         </div>
       </div>
     </div>
