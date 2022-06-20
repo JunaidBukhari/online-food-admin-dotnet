@@ -38,13 +38,13 @@ const Orders = () => {
     }
   };
   return (
-    <div className='container'>
-      <div className='mt-5'>
-        <table className='table bg-light'>
+    <div className="container">
+      <div className="mt-5">
+        <table className="table bg-light">
           <thead style={{ color: 'white', backgroundColor: '#343A40' }}>
-            <tr style={{ whiteSpace: 'nowrap' }}>
+            <tr>
               <td>Order ID</td>
-              <td>Name</td>
+              <td>Item Name</td>
               <td>Amount</td>
               <td>Price</td>
               <td>Name of Customer</td>
@@ -55,11 +55,11 @@ const Orders = () => {
           </thead>
           <tbody>
             {cart.map((c) => (
-              <tr style={{ whiteSpace: 'nowrap' }}>
+              <tr>
                 <td>{c.id}</td>
                 <td>{c.title}</td>
                 <td>
-                  <span className='ml-3' style={{ color: 'green' }}>
+                  <span className="ml-3" style={{ color: 'green' }}>
                     {c.item}
                   </span>
                 </td>
@@ -71,17 +71,17 @@ const Orders = () => {
                 <td>
                   <i
                     onClick={() => handleDelete(c)}
-                    className='fa fa-trash'
+                    className="fa fa-trash"
                     style={{ color: 'red', cursor: 'pointer' }}
                   ></i>
                   <i
                     onClick={() => {}}
-                    className='fa fa-pen ml-4'
+                    className="fa fa-pen ml-4"
                     style={{ color: 'blue', cursor: 'pointer' }}
                   ></i>
                   <i
                     onClick={() => {}}
-                    className='fa fa-check ml-4'
+                    className="fa fa-check ml-4"
                     style={{ color: 'green', cursor: 'pointer' }}
                   ></i>
                 </td>
