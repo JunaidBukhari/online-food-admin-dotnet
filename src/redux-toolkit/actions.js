@@ -43,3 +43,9 @@ export const getOrders = () => (dispatch) => {
     .get(serverRoutes.GET_ORDERS)
     .then((res) => dispatch(setOrders(res.data)));
 };
+export const updateOrder = (body) => (dispatch) => {
+  axios.post(serverRoutes.UPDATE_ORDERS, body).then((res) => {
+    dispatch(getOrders());
+    toast.success(body.status);
+  });
+};

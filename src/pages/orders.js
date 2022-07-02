@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getUsers, getOrders, getMenu } from "../redux-toolkit/actions";
+import {
+  getUsers,
+  getOrders,
+  getMenu,
+  updateOrder,
+} from "../redux-toolkit/actions";
 const Orders = () => {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.data.orders);
@@ -73,15 +78,48 @@ const Orders = () => {
                 <td>{c.status}</td>
                 <td>
                   <div className="d-flex">
-                    <i
-                      className="fa fa-trash"
-                      style={{ color: "red", cursor: "pointer" }}
-                    ></i>
-                    <i
-                      onClick={() => {}}
-                      className="fa fa-check ml-4"
-                      style={{ color: "green", cursor: "pointer" }}
-                    ></i>
+                    {c.status === "pending" && (
+                      <i
+                        onClick={() => {
+                          let order = orders.filter(
+                            (o) => o.id === c.OrderID
+                          )[0];
+                          dispatch(
+                            updateOrder({ ...order, status: "Canceled" })
+                          );
+                        }}
+                        className="fa fa-trash"
+                        style={{ color: "red", cursor: "pointer" }}
+                      ></i>
+                    )}
+                    {c.status === "Pending" && (
+                      <i
+                        onClick={() => {
+                          let order = orders.filter(
+                            (o) => o.id === c.OrderID
+                          )[0];
+                          dispatch(
+                            updateOrder({ ...order, status: "Preparing" })
+                          );
+                        }}
+                        className="fa fa-check ml-4"
+                        style={{ color: "green", cursor: "pointer" }}
+                      ></i>
+                    )}
+                    {c.status === "Preparing" && (
+                      <i
+                        onClick={() => {
+                          let order = orders.filter(
+                            (o) => o.id === c.OrderID
+                          )[0];
+                          dispatch(
+                            updateOrder({ ...order, status: "Delivered" })
+                          );
+                        }}
+                        className="fa-solid fa-truck"
+                        style={{ color: "blue", cursor: "pointer" }}
+                      ></i>
+                    )}
                   </div>
                 </td>
               </tr>
