@@ -1,13 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   menu: [],
   cart: [],
   users: [],
+  orders: [],
 };
 
 export const dataSlice = createSlice({
-  name: 'data',
+  name: "data",
   initialState,
   reducers: {
     addToCart: (state, action) => {
@@ -19,10 +20,13 @@ export const dataSlice = createSlice({
     setUsers: (state, action) => {
       state.users = action.payload;
     },
+    setOrders: (state, action) => {
+      state.orders = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addToCart, setMenu, setUsers } = dataSlice.actions;
+export const { addToCart, setMenu, setUsers, setOrders } = dataSlice.actions;
 
 export default dataSlice.reducer;
