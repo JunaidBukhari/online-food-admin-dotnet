@@ -44,7 +44,7 @@ const Orders = () => {
   return (
     <div className="container">
       <div className="mt-5">
-        <table className="table bg-light">
+        <table className="table bg-light mb-5">
           <thead style={{ color: "white", backgroundColor: "#343A40" }}>
             <tr>
               <td>Order ID</td>
@@ -61,7 +61,26 @@ const Orders = () => {
           </thead>
           <tbody>
             {array.map((c) => (
-              <tr>
+              <tr
+                style={{
+                  backgroundColor:
+                    c.status === "Pending"
+                      ? "#6495ED"
+                      : c.status === "Delivered"
+                      ? "#76B947"
+                      : c.status === "Canceled"
+                      ? "#E34234"
+                      : "",
+                  color:
+                    c.status === "Pending"
+                      ? "white"
+                      : c.status === "Delivered"
+                      ? "white"
+                      : c.status === "Canceled"
+                      ? "white"
+                      : "",
+                }}
+              >
                 <td>{c.OrderID}</td>
                 <td>{c.Food?.name}</td>
                 <td>

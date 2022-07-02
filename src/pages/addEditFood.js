@@ -1,17 +1,22 @@
-import { Modal } from 'react-bootstrap';
-import React, { useEffect, useState } from 'react';
-import ImageUpload from '../components/imageUpload';
-import { isEmptyObj } from '../utils/emptyObj';
-import { AddandUpdate, AddandUpdateWithImage } from './../redux-toolkit/actions';
-import { useDispatch } from 'react-redux';
+import { Modal } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import ImageUpload from "../components/imageUpload";
+import { isEmptyObj } from "../utils/emptyObj";
+import {
+  AddandUpdate,
+  AddandUpdateWithImage,
+} from "./../redux-toolkit/actions";
+import { useDispatch } from "react-redux";
 const AddEditFoodModal = (props) => {
- const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const { obj, setObj, setShow, show } = props;
   const [newObj, setNewObj] = useState({
     id: 0,
-    name: '',
-    image: '',
-    price: '',
+    name: "",
+    image: "",
+    price: "",
+    numberOfRatings: 0,
+    rating: 0,
     available: false,
   });
   useEffect(() => {
@@ -21,27 +26,24 @@ const AddEditFoodModal = (props) => {
       image: obj.image,
       price: obj.price,
       available: obj.available,
+      numberOfRatings: obj.numberOfRatings,
+      rating: obj.rating,
     };
     setNewObj(newobj);
-    setImage("")
+    setImage("");
   }, [props.obj]);
 
   const onChange = (e) => {
     setNewObj({ ...newObj, [e.target.name]: e.target.value });
   };
-const [image,setImage]=useState('')
+  const [image, setImage] = useState("");
   const submit = (e) => {
     e.preventDefault();
-    if(image){
-     dispatch(AddandUpdateWithImage(newObj,image,setShow))
+    if (image) {
+      dispatch(AddandUpdateWithImage(newObj, image, setShow));
+    } else {
+      dispatch(AddandUpdate(newObj, setShow));
     }
-else{
-  
-  
-  dispatch(AddandUpdate(newObj, setShow))
-
-}
-
   };
   return (
     <Modal show={show}>
@@ -51,7 +53,7 @@ else{
             <div class="form-content">
               <div class="form-items">
                 <h3 className="ml-3 mb-4">
-                  {!isEmptyObj(obj) ? 'Update Food' : 'Add Food'}
+                  {!isEmptyObj(obj) ? "Update Food" : "Add Food"}
                 </h3>
                 <form onSubmit={submit} class="requires-validation" novalidate>
                   <div class="col-md-12">
@@ -90,14 +92,19 @@ else{
                       <span class="slider round"></span>
                     </label>
                   </div>
-                  <ImageUpload setNewObj={setNewObj} newObj={newObj} image={image} setImage={setImage} />
+                  <ImageUpload
+                    setNewObj={setNewObj}
+                    newObj={newObj}
+                    image={image}
+                    setImage={setImage}
+                  />
 
                   <button
                     id="submit"
                     type="submit"
                     class="btn btn-info ml-3 mt-5"
                   >
-                    {!isEmptyObj(obj) ? 'Update' : 'Save'}
+                    {!isEmptyObj(obj) ? "Update" : "Save"}
                   </button>
                   <span
                     onClick={() => {
